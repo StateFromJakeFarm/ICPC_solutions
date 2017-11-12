@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Returns true if node 'a' is "good"
 bool dfsVisit(vector< unordered_map<int, int> > & G, int a, int c, int p) {
     for(auto it=G[a].begin(); it!=G[a].end(); it++) {
         if(it->first == p)
@@ -38,12 +39,14 @@ int main() {
         G[b][a] = c;
     }
 
+    // Run dfsVisit() starting at every node to determine if it is "good"
     vector<int> goodNodes;
     for(int i=0; i<n; i++) {
         if(dfsVisit(G, i, INT_MAX, i))
             goodNodes.push_back(i+1);
     }
 
+    // Print out all "good" nodes
     cout << goodNodes.size() << endl;
     for(int i=0; i<(int)goodNodes.size(); i++)
         cout << goodNodes[i] << endl;
